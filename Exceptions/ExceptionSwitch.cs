@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using static Exceptions.ExceptionClass;
 
 namespace Exceptions
@@ -9,27 +10,13 @@ namespace Exceptions
         public static void Exception(Exception ex)
         {
             ExceptionSwitch.ex = ex;
-            switch (ex.GetType().Name.ToString())
-            {
-                case "OutOfMemoryException":
-                    OutOfMemoryException();
-                    break;
-                case "NullReferenceException":
-                    NullReferenceException();
-                    break;
-                case "IOException":
-                    IOException();
-                    break;
-                case "IndexOutOfRangeException":
-                    IndexOutOfRangeException();
-                    break;
-                case "UnauthorizedAccessException":
-                    UnauthorizedAccessException();
-                    break;
-                default:
-                    DefaultException();
-                    break;
-            }
+            try { throw ex; }
+            catch (OutOfMemoryException) { OutOfMemoryException(); }
+            catch (NullReferenceException) { NullReferenceException(); }
+            catch (IOException) { IOException(); }
+            catch (IndexOutOfRangeException) { IndexOutOfRangeException(); }
+            catch (UnauthorizedAccessException) { UnauthorizedAccessException(); }
+            catch (Exception) { DefaultException(); }
         }
     }
 }
