@@ -10,13 +10,12 @@ namespace Exceptions
         public static void Exception(Exception ex)
         {
             ExceptionSwitch.ex = ex;
-            try { throw ex; }
-            catch (OutOfMemoryException) { OutOfMemoryException(); }
-            catch (NullReferenceException) { NullReferenceException(); }
-            catch (IOException) { IOException(); }
-            catch (IndexOutOfRangeException) { IndexOutOfRangeException(); }
-            catch (UnauthorizedAccessException) { UnauthorizedAccessException(); }
-            catch (Exception) { DefaultException(); }
+            if (ex is OutOfMemoryException) { OutOfMemoryException(); }
+            else if (ex is NullReferenceException) { NullReferenceException(); }
+            else if (ex is IOException) { IOException(); }
+            else if (ex is IndexOutOfRangeException) { IndexOutOfRangeException(); }
+            else if (ex is UnauthorizedAccessException) { UnauthorizedAccessException(); }
+            else { DefaultException(); }
         }
     }
 }
