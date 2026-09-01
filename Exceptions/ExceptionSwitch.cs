@@ -10,11 +10,11 @@ namespace Exceptions
         public static void Exception(Exception ex)
         {
             ExceptionSwitch.ex = ex;
-            if (ex is OutOfMemoryException) { OutOfMemoryException(); }
-            else if (ex is NullReferenceException) { NullReferenceException(); }
-            else if (ex is IOException) { IOException(); }
-            else if (ex is IndexOutOfRangeException) { IndexOutOfRangeException(); }
-            else if (ex is UnauthorizedAccessException) { UnauthorizedAccessException(); }
+            if (ex.GetType() == typeof(OutOfMemoryException)) { OutOfMemoryException(); }
+            else if (ex.GetType() == typeof(NullReferenceException)) { NullReferenceException(); }
+            else if (ex.GetType() == typeof(IOException)) { IOException(); }
+            else if (ex.GetType() == typeof(IndexOutOfRangeException)) { IndexOutOfRangeException(); }
+            else if (ex.GetType() == typeof(UnauthorizedAccessException)) { UnauthorizedAccessException(); }
             else { DefaultException(); }
         }
     }
